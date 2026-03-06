@@ -64,8 +64,8 @@ cord_B = Point[1]
 
 
 # Definir los posibles puntos para D y B
-d = np.linspace(0, 0.5, 100)  # Crea un arreglo de 100 puntos de L que varían de 0 a 2.0.
-b = np.linspace(0, 2.0, 100)  # Crea un arreglo de 100 puntos de pL que varían de 0 a 0.04.
+d = np.linspace(0, 0.5, 100)  # Crea un arreglo de 100 puntos de L que varían de 0 a 0.5.
+b = np.linspace(0, 2.0, 100)  # Crea un arreglo de 100 puntos de pL que varían de 0 a 2.0.
 
 # Crear una cuadrícula de valores de D y B
 D, B = np.meshgrid(d, b)  # Genera una malla 2D con los valores de L y pL en las coordenadas respectivas.
