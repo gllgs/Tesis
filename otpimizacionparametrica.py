@@ -236,18 +236,19 @@ else:
 f_KLK_BEST = 0.40509243993417915
 f_release_BEST = 0.02474920863730841
 f_production_BEST = 3.660472590236123
+k_prod_BEST = 1.530472558632681
 k_dif_BEST = 1.4399311031304896
 k_deg_BEST = 0.42859621128509695
-k_prod_BEST = 1.530472558632681
+
 parametrosoptimos = (f_KLK_BEST, f_release_BEST, f_production_BEST, k_prod_BEST, k_dif_BEST, k_deg_BEST)
 Costo_minimo = objective_function(parametrosoptimos)
 print('El costo es: ' + str(Costo_minimo))
 eq_BEST = Equilibrio_pos(f_KLK_BEST, f_release_BEST, f_production_BEST, k_prod_BEST, k_dif_BEST, k_deg_BEST)
-
+print(eq_BEST)
 D_initial_BEST, B_initial_BEST = eq_BEST
 # Para la simulación usamos D_initial (primer dato experimental) y B_initial_BEST (del equilibrio)
 y0_BEST = [D_initial, B_initial_BEST]
-
+print(y0_BEST)
 # Definimos un tiempo final y una malla fina para una gráfica suave
 tf = 10
 times_fine = np.linspace(0, tf, 100)
@@ -271,7 +272,7 @@ plt.legend()
 plt.grid(True)
 nombre_archivo = 'Optimizacion.png'
 ruta_completa = os.path.join(ruta, nombre_archivo)
-plt.savefig(ruta_completa, dpi=600)
+#plt.savefig(ruta_completa, dpi=600)
 plt.close() 
 
 # %% COMPARACIÓN
@@ -301,4 +302,6 @@ nombre_archivo = 'Comparacion.png'
 ruta_completa = os.path.join(ruta, nombre_archivo)
 plt.savefig(ruta_completa, dpi=600)
 plt.close() 
+# %%
+print(B_initial_BEST)
 # %%

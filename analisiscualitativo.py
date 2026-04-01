@@ -8,7 +8,7 @@ import matplotlib.lines as mlines
 import sympy as sp
 from sympy import Matrix
 plt.style.use('seaborn-v0_8-dark')
-
+ruta= '/Users/abrilgallegos/Desktop/Tesis2026/ImagenesTesis2026'
 #%% SISTEMA
 # Definición del sistema de ecuaciones diferenciales
 def Modelo(y, t, f_KLK, f_release, f_production,k_prod, k_dif, k_deg):
@@ -64,8 +64,8 @@ cord_B = Point[1]
 
 
 # Definir los posibles puntos para D y B
-d = np.linspace(0, 0.5, 100)  # Crea un arreglo de 100 puntos de L que varían de 0 a 0.5.
-b = np.linspace(0, 2.0, 100)  # Crea un arreglo de 100 puntos de pL que varían de 0 a 2.0.
+d = np.linspace(0, 0.5, 100)  # Crea un arreglo de 100 puntos de L que varían de 0 a 2.0.
+b = np.linspace(0, 2.0, 100)  # Crea un arreglo de 100 puntos de pL que varían de 0 a 0.04.
 
 # Crear una cuadrícula de valores de D y B
 D, B = np.meshgrid(d, b)  # Genera una malla 2D con los valores de L y pL en las coordenadas respectivas.
@@ -80,16 +80,19 @@ plt.plot(times, Dpoints, color='darkseagreen', label='D(t)')
 plt.plot(times, Bpoints, color='cornflowerblue', label='B(t)')
 plt.axhline(y=cord_D, color='gray', linestyle='--')
 plt.axhline(y=cord_B, color='gray', linestyle='--')
-plt.title('Modelo optimizado')
+plt.title('Dinámica de céluas basales y diferenciadas')
 plt.xlabel('Tiempo (días)')
 plt.ylabel('Concentración')
 plt.legend()
 plt.grid(True)
-plt.show()
-
+nombre_archivo = 'DinamicaInicial.png'
+ruta_completa = os.path.join(ruta, nombre_archivo)
+plt.savefig(ruta_completa, dpi=600)
+plt.close() 
 # %% ESPACIO FASE
 # Graficar el espaciofase
 plt.streamplot(D, B, dD, dB, color='darkgray', density=1)
+plt.scatter(cord_D,cord_B,color='black', zorder=5)
 plt.xlabel('Céulas diferenciadas (D)')
 plt.ylabel('Céulas basales (B)')
 plt.title('Espacio fase del modelo',fontsize=14)
@@ -109,5 +112,8 @@ legendB = mlines.Line2D([], [], color='cornflowerblue', label='Ceroclina de B')
 # Añadir leyenda con los objetos proxy
 plt.legend(handles=[legendD, legendB], loc=(0.70, 0.8))
 # Añade la leyenda a la gráfica, posicionada en las coordenadas (0.70, 0.8) con los objetos de ceroclina de D y B.
-plt.show()
+nombre_archivo = 'EspacioFase.png'
+ruta_completa = os.path.join(ruta, nombre_archivo)
+plt.savefig(ruta_completa, dpi=600)
+plt.close() 
 # %%
